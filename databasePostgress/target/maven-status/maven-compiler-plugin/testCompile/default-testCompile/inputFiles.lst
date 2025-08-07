@@ -1,6 +1,4 @@
 C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\DatabasePostgressApplicationTests.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\doa\AuthorDaoImplIntegrationTests.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\doa\AuthorDoaImplTests.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\doa\BookDaoImplIntegrationTests.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\doa\bookDaoImplTests.java
+C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\repositories\AuthorRepositoryIntegrationTests.java
+C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\repositories\BookRepositoryIntegrationTests.java
 C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\test\java\com\example\databasePostgress\TestDataUtil.java

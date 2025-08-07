@@ -29,18 +29,18 @@ public final class TestDataUtil {
     }
 
 
-    public static Book createTestBook() {
+    public static Book createTestBook(final Author author) {
         return Book.builder()
                 .isbn("102")
                 .title("pappan och havet")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
-    public static Book createTestBookb() {
+    public static Book createTestBookb(final Author author) {
         return Book.builder()
                 .isbn("103")
                 .title("Vem ska trösta knyttet")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
 }

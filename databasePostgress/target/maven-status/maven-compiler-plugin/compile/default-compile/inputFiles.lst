@@ -1,8 +1,5 @@
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\config\DatabaseConfig.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\DAO\AuthorDao.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\DAO\BookDao.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\DAO\impl\AuthorDaoImpl.java
-C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\DAO\impl\BookDaoImpl.java
 C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\DatabasePostgressApplication.java
 C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\domain\Author.java
 C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\domain\Book.java
+C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\repositories\AuthorRepository.java
+C:\Users\edwtim\Documents\javaProjekts\java-SpringDatabase\databasePostgress\src\main\java\com\example\databasePostgress\repositories\BookRepository.java

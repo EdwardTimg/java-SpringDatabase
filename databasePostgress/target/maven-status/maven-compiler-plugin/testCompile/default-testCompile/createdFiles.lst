@@ -1,6 +1,4 @@
 com\example\databasePostgress\DatabasePostgressApplicationTests.class
-com\example\databasePostgress\doa\AuthorDoaImplTests.class
-com\example\databasePostgress\doa\bookDaoImplTests.class
 com\example\databasePostgress\TestDataUtil.class
-com\example\databasePostgress\doa\AuthorDaoImplIntegrationTests.class
-com\example\databasePostgress\doa\BookDaoImplIntegrationTests.class
+com\example\databasePostgress\repositories\AuthorRepositoryIntegrationTests.class
+com\example\databasePostgress\repositories\BookRepositoryIntegrationTests.class
