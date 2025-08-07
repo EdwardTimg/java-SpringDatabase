@@ -59,6 +59,16 @@ public class AuthorDaoImplIntegrationTests {
 
         List<Author> result = undertest.find();
         assertThat(result).hasSize(1).contains(authorB);
+    }
 
+    @Test
+    public void testThatAuthorCanBeDeleted(){
+        Author author = TestDataUtil.createTestAuthor();
+        undertest.create(author);
+
+        undertest.delete(author.getId());
+
+        Optional<Author> result = undertest.findOne(author.getId());
+        assertThat(result).isEmpty();
     }
 }

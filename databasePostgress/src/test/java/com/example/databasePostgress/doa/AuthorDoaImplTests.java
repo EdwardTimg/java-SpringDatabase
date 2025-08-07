@@ -69,4 +69,14 @@ public class AuthorDoaImplTests {
         );
     }
 
+    @Test
+    public void testThatDeleteGernerastTheCorrectSql(){
+        undertest.delete(1L);
+
+        verify(jdbcTemplate).update(
+                eq("DELETE FROM authors WHERE id = ?"),
+                eq(1L)
+        );
+    }
+
 }
