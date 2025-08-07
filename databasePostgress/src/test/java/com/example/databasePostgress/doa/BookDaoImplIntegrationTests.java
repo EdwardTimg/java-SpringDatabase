@@ -5,6 +5,7 @@ import com.example.databasePostgress.DAO.impl.BookDaoImpl;
 import com.example.databasePostgress.TestDataUtil;
 import com.example.databasePostgress.domain.Author;
 import com.example.databasePostgress.domain.Book;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,23 @@ public class BookDaoImplIntegrationTests {
 
         List<Book> result = underTest.find();
         assertThat(result).hasSize(2).containsExactly(bookA,bookB);
+    }
+
+    @Test
+    public void testThatBookCanBeUpdated(){
+        Author author = TestDataUtil.createTestAuthor();
+        authorDao.create(author);
+        Book book = TestDataUtil.createTestBook();
+        book.setAuthorId(author.getId());
+        underTest.create(book);
+
+        book.setTitle("Trollkarlens hatt");
+
+        underTest.update(book.getIsbn(),book);
+
+        Optional<Book> result = underTest.findOne(book.getIsbn());
+        assertThat(result).isPresent();
+        assertThat(result.get().getTitle()).isEqualTo("Trollkarlens hatt");
+
     }
 }
