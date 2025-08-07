@@ -1,10 +1,12 @@
-com\example\databasePostgress\domain\Author.class
-com\example\databasePostgress\domain\Book.class
+com\example\databasePostgress\DAO\impl\BookDaoImpl$BooksRowMapper.class
 com\example\databasePostgress\DAO\impl\BookDaoImpl.class
 com\example\databasePostgress\domain\Book$BookBuilder.class
 com\example\databasePostgress\DAO\AuthorDao.class
 com\example\databasePostgress\domain\Author$AuthorBuilder.class
 com\example\databasePostgress\config\DatabaseConfig.class
 com\example\databasePostgress\DAO\BookDao.class
+com\example\databasePostgress\DAO\impl\AuthorDaoImpl$AuthorRowMapper.class
 com\example\databasePostgress\DAO\impl\AuthorDaoImpl.class
+com\example\databasePostgress\domain\Author.class
+com\example\databasePostgress\domain\Book.class
 com\example\databasePostgress\DatabasePostgressApplication.class

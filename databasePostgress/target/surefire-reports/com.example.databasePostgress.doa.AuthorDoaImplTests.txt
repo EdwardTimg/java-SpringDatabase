@@ -1,25 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.databasePostgress.doa.AuthorDoaImplTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.406 s <<< FAILURE! -- in com.example.databasePostgress.doa.AuthorDoaImplTests
-com.example.databasePostgress.doa.AuthorDoaImplTests.testThatCreatedAuthorGeneratsTheCorrectSql -- Time elapsed: 0.393 s <<< FAILURE!
-Argument(s) are different! Wanted:
-jdbcTemplate.update(
-    "INSERT INTO author (id, name, age) VALUES (?, ?, ?)",
-    1L,
-    "Tove Jansson",
-    102
-);
--> at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
-Actual invocations have different arguments:
-jdbcTemplate.update(
-    "INSERT INTO author (id, name, age) VALUES (?, ?, ?)"
-);
--> at com.example.databasePostgress.DAO.impl.AuthorDaoImpl.create(AuthorDaoImpl.java:16)
-
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
-	at com.example.databasePostgress.doa.AuthorDoaImplTests.testThatCreatedAuthorGeneratsTheCorrectSql(AuthorDoaImplTests.java:34)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.436 s -- in com.example.databasePostgress.doa.AuthorDoaImplTests

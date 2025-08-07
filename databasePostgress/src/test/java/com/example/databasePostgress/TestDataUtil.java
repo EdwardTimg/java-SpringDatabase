@@ -36,4 +36,11 @@ public final class TestDataUtil {
                 .authorId(1L)
                 .build();
     }
+    public static Book createTestBookb() {
+        return Book.builder()
+                .isbn("103")
+                .title("Vem ska trösta knyttet")
+                .authorId(1L)
+                .build();
+    }
 }

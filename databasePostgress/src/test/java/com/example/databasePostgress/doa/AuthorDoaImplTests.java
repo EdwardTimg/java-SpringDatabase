@@ -32,7 +32,7 @@ public class AuthorDoaImplTests {
         undertest.create(author);
 
         verify(jdbcTemplate).update(
-                eq("INSERT INTO author (id, name, age) VALUES (?, ?, ?)"),
+                eq("INSERT INTO authors (id, name, age) VALUES (?, ?, ?)"),
                 eq(1l), eq("Tove Jansson"), eq(102)
         );
     }
@@ -57,4 +57,6 @@ public class AuthorDoaImplTests {
                 , ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any()
         );
     }
+
+
 }

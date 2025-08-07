@@ -29,7 +29,7 @@ public class bookDaoImplTests {
         underTest.create(book);
 
         verify(jdbcTemplate).update(
-                eq("INSERT INTO books (isbn, title, authorId) VALUES (?,?,?)"),
+                eq("INSERT INTO books (isbn, title, author_id) VALUES (?,?,?)"),
                 eq("102"),eq("pappan och havet"),eq(1L));
     }
 
@@ -43,6 +43,12 @@ public class bookDaoImplTests {
         );
     }
 
+    @Test
+    public void testThatFindGeneratesCorrectSql(){
+        underTest.find();
+        verify(jdbcTemplate).query(eq("SELECT isbn, title, author_id FROM books"),
+                ArgumentMatchers.<BookDaoImpl.BooksRowMapper>any());
+    }
 
 }
 
