@@ -3,6 +3,7 @@ package com.example.databasePostgress.controllers;
 import com.example.databasePostgress.TestDataUtil;
 import com.example.databasePostgress.domain.entites.AuthorEntity;
 import com.example.databasePostgress.services.AuthorServices;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -103,4 +104,33 @@ public class AuthorControllersIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+    @Test
+    public void testThatItsPossibleToUpdateAuther() throws Exception {
+        AuthorEntity testAuthor = TestDataUtil.createTestAuthor();
+        authorServices.saveAuthor(testAuthor);
+        testAuthor.setName("Updated");
+        String authorJson = objectMapper.writeValueAsString(testAuthor);
+        mockMvc.perform(
+                MockMvcRequestBuilders.put("/authors/"+testAuthor.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(authorJson)
+        )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Updated"));
+    }
+
+    @Test
+    public void testThatPutAutherResponseWith404IfAuthorNotFound() throws Exception {
+        AuthorEntity testAuthor = TestDataUtil.createTestAuthor();
+        testAuthor.setName("Updated");
+        String authorJson = objectMapper.writeValueAsString(testAuthor);
+        mockMvc.perform(
+                        MockMvcRequestBuilders.put("/authors/999")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(authorJson)
+                )
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+
+    }
 }
+
