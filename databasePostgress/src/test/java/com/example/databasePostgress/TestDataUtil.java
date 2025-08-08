@@ -1,45 +1,52 @@
 package com.example.databasePostgress;
 
-import com.example.databasePostgress.domain.Author;
-import com.example.databasePostgress.domain.Book;
+import com.example.databasePostgress.domain.dto.AuthorDto;
+import com.example.databasePostgress.domain.dto.BookDto;
+import com.example.databasePostgress.domain.entites.AuthorEntity;
+import com.example.databasePostgress.domain.entites.BookEntity;
 
 public final class TestDataUtil {
 
     private TestDataUtil(){}
-    public static Author createTestAuthor() {
-        return Author.builder()
-                .id(1L)
+    public static AuthorEntity createTestAuthor() {
+        return AuthorEntity.builder()
                 .name("Tove Jansson")
                 .age(102)
                 .build();
     }
-    public static Author createTestAuthorB() {
-        return Author.builder()
-                .id(2L)
+    public static AuthorEntity createTestAuthorB() {
+        return AuthorEntity.builder()
                 .name("Strindberg")
                 .age(150)
                 .build();
     }
-    public static Author createTestAuthorC() {
-        return Author.builder()
-                .id(3L)
+    public static AuthorEntity createTestAuthorC() {
+        return AuthorEntity.builder()
                 .name("Scarrow")
                 .age(50)
                 .build();
     }
 
 
-    public static Book createTestBook(final Author author) {
-        return Book.builder()
+    public static BookEntity createTestBook(final AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn("102")
                 .title("pappan och havet")
-                .author(author)
+                .authorEntity(authorEntity)
                 .build();
     }
-    public static Book createTestBookb(final Author author) {
-        return Book.builder()
+    public static BookEntity createTestBookb(final AuthorEntity authorEntity) {
+        return BookEntity.builder()
                 .isbn("103")
                 .title("Vem ska trösta knyttet")
+                .authorEntity(authorEntity)
+                .build();
+    }
+
+    public static BookDto createTestBookDto(final AuthorDto author) {
+        return BookDto.builder()
+                .isbn("102")
+                .title("pappan och havet")
                 .author(author)
                 .build();
     }
