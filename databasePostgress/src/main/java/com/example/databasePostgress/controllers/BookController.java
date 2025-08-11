@@ -4,7 +4,6 @@ import com.example.databasePostgress.domain.dto.BookDto;
 import com.example.databasePostgress.domain.entites.BookEntity;
 import com.example.databasePostgress.mappers.Mapper;
 import com.example.databasePostgress.services.BookServices;
-import com.example.databasePostgress.services.impl.BookServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +25,19 @@ public class BookController {
     }
 
     @PutMapping("/books/{isbn}")
-    public ResponseEntity<BookDto> createBook(
+    public ResponseEntity<BookDto> createUpdateBook(
             @PathVariable("isbn") String isbn,
             @RequestBody BookDto bookDto){
         BookEntity bookEntity = bookMapper.mapFrom(bookDto);
-        BookEntity savedBookEntity = bookServices.createBook(isbn,bookEntity);
-        return new ResponseEntity<>(bookMapper.mapTo(savedBookEntity), HttpStatus.CREATED);
+        boolean bookExists = bookServices.isExists(isbn);
+        BookEntity savedBookEntity = bookServices.createUpdateBook(isbn,bookEntity);
+        BookDto savedBookDto= bookMapper.mapTo(savedBookEntity);
+        if(bookExists){
+            return new ResponseEntity<>(savedBookDto, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(savedBookDto, HttpStatus.CREATED);
+        }
+
     }
 
     @GetMapping("/books")

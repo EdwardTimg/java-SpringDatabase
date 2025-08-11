@@ -5,7 +5,6 @@ import com.example.databasePostgress.TestDataUtil;
 import com.example.databasePostgress.domain.dto.BookDto;
 import com.example.databasePostgress.domain.entites.BookEntity;
 import com.example.databasePostgress.services.BookServices;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -71,7 +70,7 @@ public class BookContollerIntegrationTests {
     @Test
     public void testThatFindAllBookReturnsListOfBooks() throws Exception {
         BookEntity testBook = TestDataUtil.createTestBook(null);
-        bookServices.createBook(testBook.getIsbn(), testBook);
+        bookServices.createUpdateBook(testBook.getIsbn(), testBook);
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -87,5 +86,38 @@ public class BookContollerIntegrationTests {
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    public void testThatUpdateBookReturnshttp200() throws Exception {
+        BookEntity bookEntity = TestDataUtil.createTestBook(null);
+        bookServices.createUpdateBook(bookEntity.getIsbn(), bookEntity);
+
+        BookDto bookDto = TestDataUtil.createTestBookDto(null);
+        bookDto.setIsbn(bookEntity.getIsbn());
+        String bookJson = objectMapper.writeValueAsString(bookDto);
+        mockMvc.perform(
+                MockMvcRequestBuilders.put("/books/" + bookDto.getIsbn())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(bookJson)
+        ).andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testThatUpdateBookReturnsUpdatedBook() throws Exception {
+        BookEntity bookEntity = TestDataUtil.createTestBook(null);
+        bookServices.createUpdateBook(bookEntity.getIsbn(), bookEntity);
+
+        BookDto bookDto = TestDataUtil.createTestBookDto(null);
+        bookDto.setIsbn(bookEntity.getIsbn());
+        bookDto.setTitle("Updated");
+        String bookJson = objectMapper.writeValueAsString(bookDto);
+        mockMvc.perform(
+                        MockMvcRequestBuilders.put("/books/" + bookDto.getIsbn())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(bookJson)
+                )
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Updated"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.isbn").value(bookDto.getIsbn()));
     }
 }

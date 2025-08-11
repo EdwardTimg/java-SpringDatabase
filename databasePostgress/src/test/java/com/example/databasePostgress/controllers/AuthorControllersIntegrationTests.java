@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -130,6 +132,43 @@ public class AuthorControllersIntegrationTests {
                                 .content(authorJson)
                 )
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+
+    }
+
+    @Test
+    public void testThatPartialUpdateReturnsHttp200AndCorrectBody() throws Exception {
+
+        AuthorEntity testAuthor = TestDataUtil.createTestAuthor();
+        authorServices.saveAuthor(testAuthor);
+        testAuthor.setName("Updated");
+        String authorJson = objectMapper.writeValueAsString(testAuthor);
+        mockMvc.perform(
+                        MockMvcRequestBuilders.patch("/authors/"+testAuthor.getId())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(authorJson)
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Updated"));
+    }
+
+    @Test
+    public void testThatDeleteAuthorReturnStatus204ForNoneExistingAuthor() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/authors/22")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    public void testThatDeleteAcuallyDeletes() throws Exception {
+        AuthorEntity testauthor = TestDataUtil.createTestAuthor();
+        authorServices.saveAuthor(testauthor);
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/authors/"+ testauthor.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
+
+        assertThat(authorServices.isExists(testauthor.getId())).isFalse();
 
     }
 }
